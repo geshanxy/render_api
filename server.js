@@ -14,14 +14,6 @@ app.use('/api', createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: {
     '^/api': ''
-  },
-  onProxyRes(proxyRes, req, res) {
-    const location = proxyRes.headers['location'];
-    if (location) {
-      // 把重定向地址中的 http://18.163.40.64:8091 替换为你的代理地址
-      const newLocation = location.replace('http://18.163.40.64:8091', 'https://你的代理地址/api');
-      proxyRes.headers['location'] = newLocation;
-    }
   }
 }));
 
